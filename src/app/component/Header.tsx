@@ -1,19 +1,14 @@
 import { BarChart2, Home, ArrowLeft, ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import OrganicTaleLogo from './Logo'
 
 const Header = () => {
     return (
         <header className="p-5 w-full bg-slate-950 shadow-lg border-b border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <div className="flex-shrink-0">
-                        <Link href="/" className="flex items-center">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-orange-700 rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-300">
-                                <span className="text-white font-bold text-xl">N</span>
-                            </div>
-                        </Link>
-                    </div>
+                <OrganicTaleLogo/>
                     
                     {/* Creative Back to Home Button */}
                     <div className="flex items-center space-x-4">

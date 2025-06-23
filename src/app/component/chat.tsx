@@ -1,7 +1,7 @@
 'use client'
 
-import { Input } from "../../component/ui/input"
-import { Button } from "../../component/ui/button"
+import { Input } from "../../components/ui/input"
+import { Button } from "../../components/ui/button"
 import { useChat } from "ai/react"
 import { useRef, useEffect, useState } from 'react'
 import { Send, BarChart2, Copy, Check, X, Leaf } from "lucide-react"

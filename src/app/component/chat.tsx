@@ -279,7 +279,7 @@ export function Chat() {
     }
 
     return (
-        <main className="max-h-screen flex flex-col w-full bg-slate-950">
+        <main className="min-h-screen max-h-screen h-screen flex flex-col w-full bg-slate-950">
             {/* Toast Container */}
             <ToastContainer toasts={toasts} onClose={removeToast} />
 

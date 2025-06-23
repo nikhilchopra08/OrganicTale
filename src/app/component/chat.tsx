@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/button"
 import { useChat } from "ai/react"
 import { useRef, useEffect, useState } from 'react'
 import { Send, Copy, Check, X, Leaf } from "lucide-react"
+import Header from "./Header"
 
 // Toast Interface
 interface Toast {
@@ -278,11 +279,11 @@ export function Chat() {
     }
 
     return (
-        <main className="max-h-screen flex flex-col w-full h-[89vh] bg-slate-950">
+        <main className="max-h-screen flex flex-col w-full bg-slate-950">
             {/* Toast Container */}
             <ToastContainer toasts={toasts} onClose={removeToast} />
 
-
+            <Header/>
 
             <section className="flex-grow overflow-hidden flex flex-col bg-slate-900">
                 <ul ref={chatParent} className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex-grow p-6 overflow-y-auto flex flex-col gap-8 max-w-4xl mx-auto w-full">

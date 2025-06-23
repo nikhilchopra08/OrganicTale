@@ -84,7 +84,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-900 border-t border-slate-800">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-950 border-t border-slate-800 flex flex-col">
 {navItems.map((item) => (
   <NavBtn
     key={item.name} // 🔑 Add this line
@@ -94,7 +94,7 @@ const Navbar = () => {
 ))}
 
           {/* Mobile CTA Button */}
-          <div className="pt-4 pb-2">
+          <div className="pt-4 pb-2 mx-auto">
             <StoryButton />
           </div>
         </div>

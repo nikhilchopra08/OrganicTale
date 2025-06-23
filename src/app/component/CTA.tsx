@@ -1,10 +1,11 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 const CTA = () => {
   return (
-    <section className="px-4 py-24 sm:px-6 lg:px-8 bg-slate-950">
+    <section id="about" className="px-4 py-24 sm:px-6 lg:px-8 bg-slate-950">
       <div className="mx-auto max-w-4xl">
         <div className="relative overflow-hidden rounded-2xl bg-slate-800/50 border border-slate-700/50 px-8 py-16 text-center backdrop-blur-sm">
           <div className="relative z-10">
@@ -18,17 +19,13 @@ const CTA = () => {
               Join over 500+ SaaS companies already using our platform to create authentic Reddit stories that drive real business growth.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href={"/chat"}>
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 text-lg font-semibold border-0">
-                Start Your Free Trial
+                Lets get started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-3 text-lg">
-                Book a Demo
-              </Button>
+              </Link>
             </div>
-            <p className="text-slate-500 text-sm mt-4">
-              No credit card required • 7-day free trial • Cancel anytime
-            </p>
           </div>
           
           {/* Subtle background pattern */}

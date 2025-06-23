@@ -4,7 +4,7 @@ import { Input } from "../../components/ui/input"
 import { Button } from "../../components/ui/button"
 import { useChat } from "ai/react"
 import { useRef, useEffect, useState } from 'react'
-import { Send, BarChart2, Copy, Check, X, Leaf } from "lucide-react"
+import { Send, Copy, Check, X, Leaf } from "lucide-react"
 
 // Toast Interface
 interface Toast {
@@ -73,7 +73,7 @@ function ToastItem({ toast, onClose }: ToastProps) {
                     <span className="text-sm font-medium">{toast.message}</span>
                     {toast.copiedText && (
                         <span className="text-xs opacity-75 font-mono bg-white bg-opacity-50 px-2 py-1 rounded mt-1">
-                            "{truncateText(toast.copiedText)}"
+                            &quot;{truncateText(toast.copiedText)}&quot;
                         </span>
                     )}
                 </div>
@@ -247,19 +247,19 @@ export function Chat() {
                 
                 result.push(
                     <div key={i} className="my-4 first:mt-0">
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-2">
-                            <h3 className="font-semibold text-orange-600">
+                        <div className="bg-orange-600/20 border border-orange-500/30 rounded-lg p-3 mb-2">
+                            <h3 className="font-semibold text-orange-400">
                                 {headingText}
                             </h3>
                         </div>
                         {contentText && (
-                            <div className="group relative bg-gray-50 border border-gray-200 rounded-lg p-3 hover:bg-gray-100 transition-colors">
-                                <div className="pr-8">
+                            <div className="group relative bg-slate-700/50 border border-slate-600 rounded-lg p-3 hover:bg-slate-700 transition-colors">
+                                <div className="pr-8 text-slate-200">
                                     {contentText}
                                 </div>
                                 <button
                                     onClick={() => copyToClipboard(copyableText)}
-                                    className="absolute top-2 right-2 opacity-70 md:opacity-0 md:group-hover:opacity-100 transition-opacity p-1 hover:bg-gray-200 rounded text-gray-600"
+                                    className="absolute top-2 right-2 opacity-70 md:opacity-0 md:group-hover:opacity-100 transition-opacity p-1 hover:bg-slate-600 rounded text-slate-400"
                                     title={quotedMatch ? "Copy quoted content" : "Copy content"}
                                 >
                                     {isActive ? <Check size={16} /> : <Copy size={16} />}
@@ -271,7 +271,7 @@ export function Chat() {
                 i++ // Skip the next part since we've already processed it
             } else if (part.trim() && !parts[i - 1]?.startsWith('**')) {
                 // This is regular content not following a heading
-                result.push(<span key={i}>{part}</span>)
+                result.push(<span key={i} className="text-slate-200">{part}</span>)
             }
         }
         
@@ -279,46 +279,36 @@ export function Chat() {
     }
 
     return (
-        <main className="flex flex-col w-full h-screen max-h-dvh bg-gradient-to-br from-slate-50 to-gray-100">
+        <main className="max-h-screen flex flex-col w-full h-[89vh] bg-slate-950">
             {/* Toast Container */}
             <ToastContainer toasts={toasts} onClose={removeToast} />
 
-            <header className="p-5 border-b bg-orange-50 shadow-sm w-full">
-                <div className="max-w-4xl mx-auto flex items-center gap-3">
-                    <div className="bg-red-400 text-white p-2 rounded-lg">
-                        <BarChart2 size={24} />
-                    </div>
-                    <div>
-                        <h1 className="text-2xl font-bold text-gray-800">Business Market Analysis</h1>
-                        <p className="text-gray-500">Get detailed industry insights for your business strategy</p>
-                    </div>
-                </div>
-            </header>
 
-            <section className="flex-grow overflow-hidden flex flex-col bg-orange-50">
+
+            <section className="flex-grow overflow-hidden flex flex-col bg-slate-900">
                 <ul ref={chatParent} className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex-grow p-6 overflow-y-auto flex flex-col gap-8 max-w-4xl mx-auto w-full">
 {messages.length === 0 && (
-    <div className="h-full flex items-center justify-center">
-        <div className="text-center p-8 rounded-xl bg-white shadow-md max-w-lg border border-gray-100">
-            <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Leaf size={28} className="text-orange-600" />
+    <div className="h-full my-20 flex items-center justify-center">
+        <div className="text-center p-8 rounded-xl bg-slate-800 shadow-md max-w-lg border border-slate-700">
+            <div className="bg-orange-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Leaf size={28} className="text-orange-500" />
             </div>
-            <h2 className="text-2xl font-medium mb-3 text-gray-800">Organic Product Marketing</h2>
-            <p className="text-gray-600 mb-5 leading-relaxed">Generate authentic Reddit stories to naturally promote your organic products. I'll create engaging narratives that subtly showcase your brand.</p>
-            <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
+            <h2 className="text-2xl font-medium mb-3 text-slate-100">Organic Product Marketing</h2>
+            <p className="text-slate-400 mb-5 leading-relaxed">Generate authentic Reddit stories to naturally promote your organic products. I&apos;ll create engaging narratives that subtly showcase your brand.</p>
+            <div className="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
                 <p className="text-orange-500 font-medium mb-2">Try asking:</p>
-                <div className="space-y-2 text-gray-700 text-sm">
+                <div className="space-y-2 text-slate-300 text-sm">
                     <div className="flex items-center gap-2">
                         <span className="text-orange-500">•</span>
-                        <p>'Create a skincare transformation story'</p>
+                        <p>&apos;Create a skincare transformation story&apos;</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="text-orange-500">•</span>
-                        <p>'Write about switching to organic food'</p>
+                        <p>&apos;Write about switching to organic food&apos;</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="text-orange-500">•</span>
-                        <p>'Generate a health journey success story'</p>
+                        <p>&apos;Generate a health journey success story&apos;</p>
                     </div>
                 </div>
             </div>
@@ -331,8 +321,8 @@ export function Chat() {
                             <div 
                                 className={`rounded-xl shadow-md max-w-[95%] ${
                                     m.role === 'user' 
-                                        ? 'bg-[#ff4400e3] text-white p-5' 
-                                        : 'bg-white text-black border border-gray-100 p-5 w-full whitespace-pre-wrap'
+                                        ? 'bg-orange-600 text-white p-5' 
+                                        : 'bg-slate-800 text-slate-100 border border-slate-700 p-5 w-full whitespace-pre-wrap'
                                 }`}
                             >
                                 {m.role === 'assistant' ? parseMessageContent(m.content) : m.content}
@@ -342,11 +332,11 @@ export function Chat() {
 
                     {isLoading && (
                         <li className="flex justify-start">
-                            <div className="rounded-xl p-5 bg-white border border-gray-100 shadow-md w-full">
+                            <div className="rounded-xl p-5 bg-slate-800 border border-slate-700 shadow-md w-full">
                                 <div className="flex space-x-2">
-                                    <div className="w-3 h-3 rounded-full bg-orange-400 animate-pulse"></div>
-                                    <div className="w-3 h-3 rounded-full bg-orange-400 animate-pulse delay-150"></div>
-                                    <div className="w-3 h-3 rounded-full bg-orange-400 animate-pulse delay-300"></div>
+                                    <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse"></div>
+                                    <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse delay-150"></div>
+                                    <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse delay-300"></div>
                                 </div>
                             </div>
                         </li>
@@ -354,10 +344,10 @@ export function Chat() {
                 </ul>
             </section>
 
-            <section className="p-6 border-t border-gray-400 bg-orange-50 shadow-md">
+            <section className="p-6 border-t border-slate-700 bg-slate-900 shadow-md">
                 <div className="flex items-center gap-3 max-w-4xl mx-auto">
                     <Input 
-                        className="flex-1 py-6 px-5 rounded-full bg-gray-100 focus:bg-white border-gray-200 text-gray-800" 
+                        className="flex-1 py-6 px-5 rounded-full bg-slate-800 focus:bg-slate-700 border-slate-600 text-slate-100 placeholder:text-slate-400" 
                         placeholder="Which industry would you like to analyze?"
                         value={input} 
                         onChange={handleInputChange}
@@ -371,7 +361,7 @@ export function Chat() {
                         }}
                     />
                     <Button 
-                        className="rounded-full w-14 h-14 flex items-center justify-center bg-orange-400 hover:bg-orange-600 shadow-md" 
+                        className="rounded-full w-14 h-14 flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-md" 
                         onClick={(e) => {
                             e.preventDefault()
                             if (!input.trim()) return

@@ -12,7 +12,7 @@ const benefits = [
 
 const Benefits = () => {
   return (
-    <section className="px-4 py-24 sm:px-6 lg:px-8 bg-slate-950">
+    <section id="benefits" className="px-4 py-24 sm:px-6 lg:px-8 bg-slate-950">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 items-center">
           <div>
@@ -46,9 +46,9 @@ const Benefits = () => {
                   </div>
                 </div>
                 <div className="text-slate-300">
-                  "I was struggling with my SaaS marketing until I discovered this amazing tool for Reddit. 
+                  &quot;I was struggling with my SaaS marketing until I discovered this amazing tool for Reddit. 
                   Within a month, I went from 100 to 5,000 monthly visitors. The stories feel so authentic 
-                  that people actually want to engage and learn more about my product."
+                  that people actually want to engage and learn more about my product.&quot;
                 </div>
                 <div className="flex items-center space-x-4 text-sm text-slate-500">
                   <span>↑ 2.4k upvotes</span>

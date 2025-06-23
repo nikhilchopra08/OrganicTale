@@ -181,7 +181,11 @@ export async function POST(req: Request) {
         return new StreamingTextResponse(
             stream.pipeThrough(createStreamDataTransformer()),
         );
-    } catch (e: any) {
-        return Response.json({ error: e.message }, { status: e.status ?? 500 });
-    }
+    } catch (e: unknown) {
+  const error = e as Error;
+  const status = (e && typeof e === 'object' && 'status' in e && typeof e.status === 'number') 
+    ? e.status 
+    : 500;
+  return Response.json({ error: error.message }, { status });
+}
 }

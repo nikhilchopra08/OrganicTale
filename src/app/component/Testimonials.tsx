@@ -48,7 +48,7 @@ const Testimonials = () => {
                     <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
                   ))}
                 </div>
-                <p className="text-slate-300 mb-6">"{testimonial.content}"</p>
+                <p className="text-slate-300 mb-6">&quot;{testimonial.content}&quot;</p>
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {testimonial.avatar}

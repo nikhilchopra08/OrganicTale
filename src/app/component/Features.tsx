@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, Target, Shield, BarChart3 } from "lucide-react";
+import { Zap, Target, Shield } from "lucide-react";
 
 const features = [
   {
@@ -17,17 +17,12 @@ const features = [
     icon: Shield,
     title: "Authentic & Compliant",
     description: "Stories that feel genuine and follow Reddit's community guidelines while promoting your business naturally."
-  },
-  {
-    icon: BarChart3,
-    title: "Performance Analytics",
-    description: "Track engagement, upvotes, comments, and traffic driven to your website from each story posted."
   }
 ];
 
 const Features = () => {
   return (
-    <section className="px-4 py-24 sm:px-6 lg:px-8 bg-slate-950">
+    <section id="features" className="px-4 py-24 sm:px-6 lg:px-8 bg-slate-950">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-100 sm:text-4xl">
@@ -38,7 +33,7 @@ const Features = () => {
           </p>
         </div>
         
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <Card key={index} className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300">
               <CardHeader>

@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageSquare, TrendingUp, Users, Zap } from "lucide-react";
+import { ArrowRight, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 import FounderStory from "./FounderStory";
 

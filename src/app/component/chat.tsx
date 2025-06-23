@@ -54,15 +54,13 @@ function ToastItem({ toast, onClose }: ToastProps) {
     }
 
     return (
-        <div className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg transition-all duration-300 transform mb-2 ${
-            isExiting 
-                ? 'animate-slide-out' 
-                : 'animate-slide-in'
-        } ${
-            toast.type === 'success' 
-                ? 'bg-green-50 border border-green-200 text-green-800' 
+        <div className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg transition-all duration-300 transform mb-2 ${isExiting
+            ? 'animate-slide-out'
+            : 'animate-slide-in'
+            } ${toast.type === 'success'
+                ? 'bg-green-50 border border-green-200 text-green-800'
                 : 'bg-red-50 border border-red-200 text-red-800'
-        }`}>
+            }`}>
             <div className="flex items-center gap-2 flex-1">
                 {toast.type === 'success' ? (
                     <Check size={16} className="text-green-600 flex-shrink-0" />
@@ -191,10 +189,10 @@ export function Chat() {
             type,
             copiedText
         }
-        
+
         // Add new toast to the end (LIFO - Last In, First Out for display)
         setToasts(prev => [...prev, newToast])
-        
+
         // Optional: Limit maximum number of toasts (e.g., max 5)
         setToasts(prev => prev.slice(-5))
     }
@@ -203,12 +201,13 @@ export function Chat() {
         setToasts(prev => prev.filter(toast => toast.id !== id))
     }
 
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        if (!input.trim()) return
+    // onSubmit
+    // const onSubmit = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
+    //     e.preventDefault()
+    //     if (!input.trim()) return
 
-        await handleSubmit(e as any)
-    }
+    //     await handleSubmit(e as any)
+    // }
 
     const copyToClipboard = async (text: string) => {
         try {
@@ -225,26 +224,26 @@ export function Chat() {
     const parseMessageContent = (content: string) => {
         const parts = content.split(/(\*\*[^*]+\*\*)/g)
         const result = []
-        
+
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i]
-            
+
             if (part.startsWith('**') && part.endsWith('**')) {
                 const headingText = part.slice(2, -2)
                 const nextPart = parts[i + 1] || ''
-                
+
                 // Extract content within double quotes if present
-                let contentText = nextPart.trim()
+                const contentText = nextPart.trim()
                 let copyableText = contentText
-                
+
                 // Check if content contains quotes and extract only the quoted part
                 const quotedMatch = contentText.match(/"([^"]*)"/)
                 if (quotedMatch) {
                     copyableText = quotedMatch[1] // Extract content within quotes
                 }
-                
+
                 const isActive = copiedText === copyableText
-                
+
                 result.push(
                     <div key={i} className="my-4 first:mt-0">
                         <div className="bg-orange-600/20 border border-orange-500/30 rounded-lg p-3 mb-2">
@@ -274,7 +273,7 @@ export function Chat() {
                 result.push(<span key={i} className="text-slate-200">{part}</span>)
             }
         }
-        
+
         return result
     }
 
@@ -287,43 +286,42 @@ export function Chat() {
 
             <section className="flex-grow overflow-hidden flex flex-col bg-slate-900">
                 <ul ref={chatParent} className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex-grow p-6 overflow-y-auto flex flex-col gap-8 max-w-4xl mx-auto w-full">
-{messages.length === 0 && (
-    <div className="h-full my-20 flex items-center justify-center">
-        <div className="text-center p-8 rounded-xl bg-slate-800 shadow-md max-w-lg border border-slate-700">
-            <div className="bg-orange-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Leaf size={28} className="text-orange-500" />
-            </div>
-            <h2 className="text-2xl font-medium mb-3 text-slate-100">Organic Product Marketing</h2>
-            <p className="text-slate-400 mb-5 leading-relaxed">Generate authentic Reddit stories to naturally promote your organic products. I&apos;ll create engaging narratives that subtly showcase your brand.</p>
-            <div className="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
-                <p className="text-orange-500 font-medium mb-2">Try asking:</p>
-                <div className="space-y-2 text-slate-300 text-sm">
-                    <div className="flex items-center gap-2">
-                        <span className="text-orange-500">•</span>
-                        <p>&apos;Create a skincare transformation story&apos;</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-orange-500">•</span>
-                        <p>&apos;Write about switching to organic food&apos;</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-orange-500">•</span>
-                        <p>&apos;Generate a health journey success story&apos;</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-)}
+                    {messages.length === 0 && (
+                        <div className="h-full my-20 flex items-center justify-center">
+                            <div className="text-center p-8 rounded-xl bg-slate-800 shadow-md max-w-lg border border-slate-700">
+                                <div className="bg-orange-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <Leaf size={28} className="text-orange-500" />
+                                </div>
+                                <h2 className="text-2xl font-medium mb-3 text-slate-100">Organic Product Marketing</h2>
+                                <p className="text-slate-400 mb-5 leading-relaxed">Generate authentic Reddit stories to naturally promote your organic products. I&apos;ll create engaging narratives that subtly showcase your brand.</p>
+                                <div className="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
+                                    <p className="text-orange-500 font-medium mb-2">Try asking:</p>
+                                    <div className="space-y-2 text-slate-300 text-sm">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-orange-500">•</span>
+                                            <p>&apos;Create a skincare transformation story&apos;</p>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-orange-500">•</span>
+                                            <p>&apos;Write about switching to organic food&apos;</p>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-orange-500">•</span>
+                                            <p>&apos;Generate a health journey success story&apos;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     {messages.map((m) => (
                         <li key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div 
-                                className={`rounded-xl shadow-md max-w-[95%] ${
-                                    m.role === 'user' 
-                                        ? 'bg-orange-600 text-white p-5' 
-                                        : 'bg-slate-800 text-slate-100 border border-slate-700 p-5 w-full whitespace-pre-wrap'
-                                }`}
+                            <div
+                                className={`rounded-xl shadow-md max-w-[95%] ${m.role === 'user'
+                                    ? 'bg-orange-600 text-white p-5'
+                                    : 'bg-slate-800 text-slate-100 border border-slate-700 p-5 w-full whitespace-pre-wrap'
+                                    }`}
                             >
                                 {m.role === 'assistant' ? parseMessageContent(m.content) : m.content}
                             </div>
@@ -346,27 +344,28 @@ export function Chat() {
 
             <section className="p-6 border-t border-slate-700 bg-slate-900 shadow-md">
                 <div className="flex items-center gap-3 max-w-4xl mx-auto">
-                    <Input 
-                        className="flex-1 py-6 px-5 rounded-full bg-slate-800 focus:bg-slate-700 border-slate-600 text-slate-100 placeholder:text-slate-400" 
+                    <Input
+                        className="flex-1 py-6 px-5 rounded-full bg-slate-800 focus:bg-slate-700 border-slate-600 text-slate-100 placeholder:text-slate-400"
                         placeholder="Which industry would you like to analyze?"
-                        value={input} 
+                        value={input}
                         onChange={handleInputChange}
                         disabled={isLoading}
-                        onKeyDown={(e) => {
+                        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
                             if (e.key === 'Enter' && !e.shiftKey) {
-                                e.preventDefault()
-                                if (!input.trim()) return
-                                handleSubmit(e as any)
+                                e.preventDefault();
+                                if (!input.trim()) return;
+                                handleSubmit(e);
                             }
                         }}
                     />
-                    <Button 
-                        className="rounded-full w-14 h-14 flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-md" 
-                        onClick={(e) => {
-                            e.preventDefault()
-                            if (!input.trim()) return
-                            handleSubmit(e as any)
+                    <Button
+                        className="rounded-full w-14 h-14 flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-md"
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            e.preventDefault();
+                            if (!input.trim()) return;
+                            handleSubmit(e);
                         }}
+
                         disabled={isLoading}
                     >
                         <Send size={20} />

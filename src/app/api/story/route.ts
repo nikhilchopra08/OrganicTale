@@ -141,8 +141,6 @@ Remember: The story should read like a genuine user experience, not an advertise
 
 Now respond based on where we are in the conversation flow above.`;
 
-export { REDDIT_STORY_TEMPLATE };
-
 
 export async function POST(req: Request) {
     try {
